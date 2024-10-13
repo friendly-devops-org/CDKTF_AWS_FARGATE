@@ -5,9 +5,6 @@ import { dbStack, DbConfigs } from './lib/stacks/db-stack';
 import { LoadBalancerStack, LbConfigs } from './lib/stacks/loadbalancer-stack';
 import { EcsClusterStack } from './lib/stacks/ecs-cluster-stack';
 import { EcsServiceStack, EcsServiceConfigs } from './lib/stacks/ecs-service-stack';
-//import { InstanceStack, InstanceConfigs } from './lib/stacks/ec2-stack';
-//import { LaunchTemplateStack, LaunchTemplateConfigs } from './lib/stacks/launchtemplate-stack';
-//import { AutoScalingStack, AutoScalingConfigs } from './lib/stacks/autoscaling-stack';
 import { AppAutoScalingStack, AppAutoScalingConfigs } from './lib/stacks/application-as-stack';
 import { sgStack } from './lib/stacks/securitygroup-stack';
 import { Route53Stack, RouteConfigs } from './lib/stacks/route53-stack';
@@ -48,42 +45,6 @@ const LbConfig: LbConfigs = {
     certificate: `${process.env.CERTIFICATE}`,
 }
 
-/*
-const LTConfig: LaunchTemplateConfigs = {
-    name: StackProps.name,
-    project: StackProps.project,
-    region: StackProps.region,
-    imageId: "ami-00f453db4525939cf",
-    instanceType: "t3.micro",
-    iamInstanceProfile: cluster.instanceProfile.name,
-    securityGroupIds: [sGroup.sg.id],
-    userData: "./scripts/cluster.sh"
-}
-
-const launchTemplate = new LaunchTemplateStack(app, "lt-stack", LTConfig)
-
-const AsgConfig: AutoScalingConfigs = {
-    name: StackProps.name,
-    project: StackProps.project,
-    region: StackProps.region,
-    desiredCapacity: 1,
-    minSize: 1,
-    maxSize: 3,
-    launchTemplate: {
-        id: launchTemplate.launchTemplate.id,
-    },
-    vpcZoneIdentifier: [`${process.env.SUBNET}`, `${process.env.SUBNET_2}`],
-    cpuTargetValue: 80,
-    memoryTargetValue: 80,
-    ecsClusterName: cluster.cluster.name,
-}
-
-new AutoScalingStack(app, "asg-stack", AsgConfig)
-*/
-/*const InstanceConfig: InstanceConfigs {
-    launchTemplate: {
-        id: launchTemplate.launchTemplate.id
-}*/
 
 const taskDefinition = new taskDefinitionStack(app, "td-stack", DbConfig);
 const lb = new LoadBalancerStack(app, "lb-stack", LbConfig);

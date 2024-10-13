@@ -19,8 +19,6 @@ export interface AutoScalingConfigs extends BaseStackProps {
 
 export class AutoScalingStack extends AwsStackBase {
     private autoScaling: AutoscalingGroup;
-//    private cpuAutoScalingPolicy: AutoscalingPolicy;
-//    private memoryAutoScalingPolicy: AutoscalingPolicy;
     constructor(scope: Construct, id: string, props: AutoScalingConfigs) {
         super(scope,  `${props.name}-${id}`, {
             name: props.name,
