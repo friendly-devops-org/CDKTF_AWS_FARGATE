@@ -34,9 +34,9 @@ export class AppAutoScalingStack extends AwsStackBase {
          new AppautoscalingPolicy(this, `${props.name}-cpu-app-auto-scaler-policy`, {
             name: `${props.name}-${props.project}-cpu-scaling-policy`,
             policyType: "TargetTrackingScaling",
-            scalableDimension: this.appAutoScaling.scalableDimension,
-            serviceNamespace: this.appAutoScaling.serviceNamespace,
-            resourceId: this.appAutoScaling.resourceId,
+            scalableDimension: appAutoScaling.scalableDimension,
+            serviceNamespace: appAutoScaling.serviceNamespace,
+            resourceId: appAutoScaling.resourceId,
             targetTrackingScalingPolicyConfiguration: {
                 targetValue: props.cpuTargetValue,
                 predefinedMetricSpecification: {
@@ -49,9 +49,9 @@ export class AppAutoScalingStack extends AwsStackBase {
          new AppautoscalingPolicy(this, `${props.name}-memory-app-auto-scaler-policy`, {
             name: `${props.name}-${props.project}-memory-scaling-policy`,
             policyType: "TargetTrackingScaling",
-            scalableDimension: this.appAutoScaling.scalableDimension,
-            serviceNamespace: this.appAutoScaling.serviceNamespace,
-            resourceId: this.appAutoScaling.resourceId,
+            scalableDimension: appAutoScaling.scalableDimension,
+            serviceNamespace: appAutoScaling.serviceNamespace,
+            resourceId: appAutoScaling.resourceId,
             targetTrackingScalingPolicyConfiguration: {
                 targetValue: props.memoryTargetValue,
                 predefinedMetricSpecification: {
