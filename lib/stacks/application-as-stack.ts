@@ -16,14 +16,13 @@ export interface AppAutoScalingConfigs extends BaseStackProps {
 }
 
 export class AppAutoScalingStack extends AwsStackBase {
-    private appAutoScaling: AppautoscalingTarget;
     constructor(scope: Construct, id: string, props: AppAutoScalingConfigs) {
         super(scope,  `${props.name}-${id}`, {
             name: props.name,
             project: props.project,
             region: props.region,
         })
-        this.appAutoScaling = new AppautoscalingTarget(this, `${props.name}-application-auto-scaler`, {
+        new AppautoscalingTarget(this, `${props.name}-application-auto-scaler`, {
             minCapacity: props.minCapacity,
             maxCapacity: props.maxCapacity,
             resourceId: `service/${props.ecsClusterName}/${props.ecsServiceName}`,

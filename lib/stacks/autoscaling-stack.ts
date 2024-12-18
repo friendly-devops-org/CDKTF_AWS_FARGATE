@@ -18,14 +18,13 @@ export interface AutoScalingConfigs extends BaseStackProps {
 }
 
 export class AutoScalingStack extends AwsStackBase {
-    private autoScaling: AutoscalingGroup;
     constructor(scope: Construct, id: string, props: AutoScalingConfigs) {
         super(scope,  `${props.name}-${id}`, {
             name: props.name,
             project: props.project,
             region: props.region,
         })
-        this.autoScaling = new AutoscalingGroup(this, `${props.name}-auto-scaler`, {
+        new AutoscalingGroup(this, `${props.name}-auto-scaler`, {
             name: `${props.name}-${props.project}`,
             desiredCapacity: props.desiredCapacity,
             minSize: props.minSize,
