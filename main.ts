@@ -11,24 +11,15 @@ import { Route53Stack, RouteConfigs } from './lib/stacks/route53-stack';
 //import { RemoteBackend } from 'cdktf'; // uncomment this line to use Terraform Cloud
 
 const StackProps: BaseStackProps = {
-    name: "first-complete",
+    name: "second-complete",
     project: "deployment-test",
     region: "us-east-2"
-}
-
-function aFile(key: string){
-    const fileS = require('fs');
-    fileS.writeFileSync('./scripts/cluster.sh',"#!/bin/bash\n");
-    fileS.appendFileSync('./scripts/cluster.sh',"sudo echo ECS_CLUSTER=" + key + " >> /etc/ecs/ecs.config");
 }
 
 const app = new App();
 const cluster = new EcsClusterStack(app, "ecs-cluster-stack", StackProps);
 const sGroup = new sgStack(app, "sg-stack", StackProps);
 const db = new dbStack(app, "db-stack", StackProps);
-
-const clusterName = `${StackProps.name}-${StackProps.project}-cluster`;
-aFile(clusterName);
 
 const DbConfig: DbConfigs = {
     name: StackProps.name,
