@@ -12,7 +12,7 @@ import { Route53Stack, RouteConfigs } from './lib/stacks/route53-stack';
 
 const StackProps: BaseStackProps = {
     name: "second-complete",
-    project: "deployment-test2",
+    project: "deployment-test",
     region: "us-east-2"
 }
 
